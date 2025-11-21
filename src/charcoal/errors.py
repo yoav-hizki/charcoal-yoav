@@ -134,3 +134,19 @@ class NoGraphiteContinue(CharcoalError):
         else:
             message = base_msg
         super().__init__(message)
+
+
+class CommandFailedError(CharcoalError):
+    """Raised when a shell command fails.
+
+    Attributes:
+        command: The command that failed.
+        returncode: The exit code of the failed command.
+        message: Optional error message.
+    """
+
+    def __init__(self, command: str, returncode: int, message: str | None = None) -> None:
+        self.command = command
+        self.returncode = returncode
+        error_msg = message or f"Command '{command}' failed with exit code {returncode}"
+        super().__init__(error_msg)
