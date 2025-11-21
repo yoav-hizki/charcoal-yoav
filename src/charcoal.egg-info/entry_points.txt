@@ -1,0 +1,2 @@
+[console_scripts]
+charcoal = charcoal.cli:cli_entry
