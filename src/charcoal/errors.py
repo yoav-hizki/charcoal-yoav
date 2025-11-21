@@ -141,12 +141,80 @@ class CommandFailedError(CharcoalError):
 
     Attributes:
         command: The command that failed.
-        returncode: The exit code of the failed command.
-        message: Optional error message.
+        args: The arguments passed to the command.
+        status: The exit code of the failed command.
+        stdout: The standard output of the command.
+        stderr: The standard error output of the command.
+        errno: Optional errno value.
+        code: Optional error code string.
     """
 
-    def __init__(self, command: str, returncode: int, message: str | None = None) -> None:
+    def __init__(
+        self,
+        command: str,
+        args: list[str],
+        status: int,
+        stdout: str,
+        stderr: str,
+        errno: int | None = None,
+        code: str | None = None,
+    ) -> None:
         self.command = command
-        self.returncode = returncode
-        error_msg = message or f"Command '{command}' failed with exit code {returncode}"
-        super().__init__(error_msg)
+        self.args = args
+        self.status = status
+        self.stdout = stdout
+        self.stderr = stderr
+        self.errno = errno
+        self.code = code
+
+        # Build error message
+        parts = []
+        if errno and code:
+            parts.append(f"Command failed with error {code} ({errno}), exit code {status}:")
+        else:
+            parts.append(f"Command failed with error exit code {status}:")
+        parts.append(" ".join([command] + args))
+        if stdout:
+            parts.append(stdout)
+        if stderr:
+            parts.append(stderr)
+
+        super().__init__("\n".join(parts))
+
+
+class CommandKilledError(CharcoalError):
+    """Raised when a shell command is killed by a signal.
+
+    Attributes:
+        command: The command that was killed.
+        args: The arguments passed to the command.
+        signal: The signal that killed the command.
+        stdout: The standard output of the command.
+        stderr: The standard error output of the command.
+    """
+
+    def __init__(
+        self,
+        command: str,
+        args: list[str],
+        signal: str,
+        stdout: str,
+        stderr: str,
+    ) -> None:
+        self.command = command
+        self.args = args
+        self.signal = signal
+        self.stdout = stdout
+        self.stderr = stderr
+
+        # Build error message
+        parts = [
+            f"Command killed with signal {signal}:",
+            " ".join([command] + args),
+        ]
+        if stdout:
+            parts.append(stdout)
+        if stderr:
+            parts.append(stderr)
+
+        super().__init__("\n".join(parts))
