@@ -11,7 +11,7 @@ from collections.abc import Callable
 from pydantic import BaseModel
 
 from charcoal.config.spiffy import SpiffyFactory, spiffy
-from charcoal.errors import ExitFailedError
+from charcoal.lib.errors import ExitFailedError
 
 
 class RepoConfig(BaseModel):

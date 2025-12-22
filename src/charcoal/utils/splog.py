@@ -189,7 +189,7 @@ class Splog:
                 )
             )
             # Re-raise as a more specific error that can be caught by the runner
-            from charcoal.errors import CommandFailedError
+            from charcoal.lib.errors import CommandFailedError
 
             raise CommandFailedError(
                 command=self.pager, message=str(e), returncode=getattr(e, "returncode", 1)

@@ -12,7 +12,7 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from charcoal.config.spiffy import SpiffyFactory, spiffy
-from charcoal.errors import CommandFailedError
+from charcoal.lib.errors import CommandFailedError
 
 # Constants
 DEFAULT_GRAPHITE_API_SERVER = "https://api.graphite.dev/v1"
