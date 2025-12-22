@@ -1,6 +1,6 @@
 """Tests for the colors module."""
 
-from charcoal.utils import colors
+from charcoal.lib import colors
 
 
 def test_graphite_colors_palette() -> None:
