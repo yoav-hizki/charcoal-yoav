@@ -1,24 +1,22 @@
-"""Git preconditions and validation functions."""
+"""Git preconditions and validation functions.
 
-import subprocess
+DEPRECATED: This module is maintained for backwards compatibility only.
+New code should import from charcoal.lib.preconditions instead.
+"""
 
+# Re-export from new location for backwards compatibility
+from charcoal.lib.preconditions import (  # noqa: F401
+    current_git_repo_precondition,
+    ensure_some_staged_changes_precondition,
+    get_repo_root_path,
+    get_repo_root_path_precondition,
+    uncommitted_tracked_changes_precondition,
+)
 
-def get_repo_root_path() -> str:
-    """Get the root path of the current git repository.
-
-    Returns:
-        Absolute path to the repository root
-
-    Raises:
-        Exception: If not in a git repository
-    """
-    try:
-        result = subprocess.run(
-            ["git", "rev-parse", "--show-toplevel"],
-            capture_output=True,
-            text=True,
-            check=True,
-        )
-        return result.stdout.strip()
-    except subprocess.CalledProcessError as e:
-        raise Exception("Not in a git repository") from e
+__all__ = [
+    "get_repo_root_path_precondition",
+    "current_git_repo_precondition",
+    "uncommitted_tracked_changes_precondition",
+    "ensure_some_staged_changes_precondition",
+    "get_repo_root_path",
+]

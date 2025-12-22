@@ -3,7 +3,7 @@
 import io
 from unittest.mock import patch
 
-from charcoal.utils.splog import Splog, compose_splog
+from charcoal.lib.utils.splog import Splog, compose_splog
 
 
 def test_compose_splog() -> None:
