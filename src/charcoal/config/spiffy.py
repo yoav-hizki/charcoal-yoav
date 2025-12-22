@@ -11,7 +11,7 @@ from typing import Any, Generic, TypeVar
 
 from pydantic import BaseModel, ValidationError
 
-from charcoal.errors import ExitFailedError
+from charcoal.lib.errors import ExitFailedError
 
 # Type variables for generic spiffy instances
 TModel = TypeVar("TModel", bound=BaseModel)

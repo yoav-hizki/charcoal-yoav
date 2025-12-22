@@ -1,6 +1,6 @@
 """Tests for error classes."""
 
-from charcoal.errors import (
+from charcoal.lib.errors import (
     BadTrunkOperationError,
     BlockedDuringRebaseError,
     ConcurrentExecutionError,
