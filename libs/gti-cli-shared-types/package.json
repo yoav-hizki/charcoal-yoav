@@ -1,0 +1,22 @@
+{
+  "name": "@danerwilliams/gti-cli-shared-types",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "version": "0.3.2",
+  "devDependencies": {
+    "typescript": "~5.7.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "eslint": "eslint . --ext .ts --ext .tsx",
+    "build": "rm -rf dist/ && tsc"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
