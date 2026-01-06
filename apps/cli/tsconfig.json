@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "esnext",
+    // moduleResolution: "node" chosen for maximum CommonJS compatibility
+    // - "node16"/"bundler" would require .js extensions in imports for proper ESM/CJS interop
+    // - Current codebase uses extensionless imports throughout (e.g., '../lib/utils/splog')
+    // - Maintaining "node" avoids breaking 200+ import statements while staying on CommonJS
+    // - Will revisit in Phase 2 ESM migration when refactoring import paths
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "declaration": true,
+    "lib": ["esnext", "dom"],
+    "useUnknownInCatchVariables": false
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
+  "include": ["src", "test", "scripts"],
+  "rootDirs": [
+    ".",
+  ]
+}
